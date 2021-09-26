@@ -1,3 +1,4 @@
+import { Box } from '@mui/system';
 import React from 'react'
 import {
     BarChart,
@@ -72,25 +73,25 @@ const data = [
 
 export const Barchar = (props: Props) => {
     return (
-        <>
+        <ResponsiveContainer width="100%"  aspect={.3}>
             <BarChart
-                width={1000}
-                height={1100}
+                width={800}
+                height={1500}
                 layout="vertical"
                 data={props.barData}
                 stackOffset="sign"
-                barCategoryGap={5}
-                margin={{ top: 10, right: 50, left: 150, bottom: 0 }}
-                >
-                <CartesianGrid strokeDasharray="3 3" />
+                barCategoryGap={10}
+                margin={{ top: 20, right: 0, left: 0, bottom: 0 }}
+            >
+                <CartesianGrid strokeDasharray="1 1" />
                 <XAxis type="number" />
-                <YAxis type="category" dataKey="name" width={150} />
+                <YAxis type="category" dataKey="name" width={200} />
                 <Tooltip />
                 <Legend />
                 <ReferenceLine x={0} stroke="#000" />
                 <Bar dataKey="Dose1" fill="#8884d8" stackId="stack" />
                 <Bar dataKey="Dose2" fill="#82ca9d" stackId="stack" />
             </BarChart>
-        </>
+        </ResponsiveContainer>
     )
 }

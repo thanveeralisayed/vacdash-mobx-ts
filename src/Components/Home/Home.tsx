@@ -46,7 +46,6 @@ const Home = (props: Props) => {
     }
 
     const SetTabs = () => {
-        console.log(checked);
         const TabView = checked === 1 ?
             <Tab List={List} pieVData={pieVData} pieGdata={pieGdata} barSdata={BarSData} /> :
             checked === 2 ?
@@ -54,7 +53,6 @@ const Home = (props: Props) => {
                 checked === 3 ?
                     'LAST 7 DAYS DATA SOON' :
                     '';
-        console.log(TabView);
         setTabState(TabView);
     }
 
