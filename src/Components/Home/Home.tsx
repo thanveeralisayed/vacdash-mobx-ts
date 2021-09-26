@@ -36,7 +36,7 @@ const Home = (props: Props) => {
     const [tabState, setTabState] = React.useState<JSX.Element | "" | string>();
     const [checked, setChecked] = React.useState(0);
     const [pieVData, setpieVData] = useState<pieDataItem[]>([] as pieDataItem[]);
-
+    const [pieGdata, setPieGdata] = useState<pieDataItem[]>([] as pieDataItem[]);
 
     const handleChange = (val: number) => {
         setChecked(val);
@@ -45,7 +45,7 @@ const Home = (props: Props) => {
     const SetTabs = () => {
         console.log(checked);
         const TabView = checked === 1 ?
-            <Tab List={List} pieVData={pieVData} /> :
+            <Tab List={List} pieVData={pieVData} pieGdata={pieGdata} /> :
             checked === 2 ?
                 'TODAY DATA SOON' :
                 checked === 3 ?
@@ -77,7 +77,7 @@ const Home = (props: Props) => {
 
             ])
 
-            setpieVData([...pieVData,
+            setpieVData([
             {
                 name: 'COVISHIELD',
                 value: dashBoardStore.vaccination.covishield
@@ -92,6 +92,23 @@ const Home = (props: Props) => {
             },
             ])
 
+
+            setPieGdata([
+            {
+                name: 'MALE',
+                value: dashBoardStore.vaccination.male
+            },
+            {
+                name: 'FEMALE',
+                value: dashBoardStore.vaccination.female
+            },
+            {
+                name: 'OTHERS',
+                value: dashBoardStore.vaccination.others
+            }
+
+            ])
+
             setChecked(1);
 
         }
@@ -102,14 +119,14 @@ const Home = (props: Props) => {
 
     useEffect(() => {
         if (!loading) {
-            console.log('set tabs');
 
             SetTabs();
         }
     }, [checked, loading])
 
 
-
+    console.log(pieGdata);
+    
 
 
     return (
@@ -124,7 +141,7 @@ const Home = (props: Props) => {
                     tabState !== "" && tabState !== undefined ? tabState : ''
                 }
             </Box>
-            
+
         </div>
     )
 }

@@ -7,6 +7,7 @@ import { PieChar, pieDataItem } from '../PieChart/PieChar'
 interface Props {
     List: labelct[];
     pieVData?: pieDataItem[];
+    pieGdata?: pieDataItem[];
 }
 
 export const Tab = (props: Props) => {
@@ -25,6 +26,9 @@ export const Tab = (props: Props) => {
             <Grid mt={1} container>
                 <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
                     <PieChar piData={props.pieVData} />
+                </Grid>
+                <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
+                    <PieChar piData={props.pieGdata} />
                 </Grid>
             </Grid>
         </div>
