@@ -1,6 +1,7 @@
 import axios from "axios";
 import { observable, action, reaction } from "mobx";
 import { createContext } from "react";
+import {format} from "date-fns";
 
 type result = any;
 
@@ -65,7 +66,8 @@ class DashBoardStore {
   
 
   @action getData = async (callBack:React.Dispatch<React.SetStateAction<boolean>>) => {
-    await axios.get('https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id=&district_id=&date=2021-09-24/topBlock')
+    const date = format(new Date(), 'yy-MM-dd');
+    await axios.get(`https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id=&district_id=&date=${date}/topBlock`)
       .then(resp => {
         this.topBlock = resp.data.topBlock; 
         this.states = resp.data.getBeneficiariesGroupBy;
