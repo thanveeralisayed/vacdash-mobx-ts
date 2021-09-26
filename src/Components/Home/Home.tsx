@@ -9,6 +9,8 @@ import Zoom from '@mui/material/Zoom';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { Button, ButtonGroup, Grid, Paper, Tabs } from '@mui/material';
 import { Tab } from '../Tab/Tab';
+import { PieChar, pieDataItem } from '../PieChart/PieChar';
+
 
 
 
@@ -25,13 +27,15 @@ export type labelct = {
 
 
 
+
+
 const Home = (props: Props) => {
     const dashBoardStore = useContext(DashBoardStore);
     const [loading, setLoading] = useState(true);
     const [List, setList] = useState<labelct[]>([] as labelct[]);
-    const [tabState, setTabState] = React.useState<JSX.Element | "">();
+    const [tabState, setTabState] = React.useState<JSX.Element | "" | string>();
     const [checked, setChecked] = React.useState(0);
-    const [popVData, setpopVData] = useState<labelct[]>([] as labelct[]);
+    const [pieVData, setpieVData] = useState<pieDataItem[]>([] as pieDataItem[]);
 
 
     const handleChange = (val: number) => {
@@ -40,8 +44,13 @@ const Home = (props: Props) => {
 
     const SetTabs = () => {
         console.log(checked);
-        const TabView = checked === 1 ? <Tab List={List} /> : checked === 2 ? <Tab List={List} /> :
-            checked === 3 ? <Tab List={List} /> : '';
+        const TabView = checked === 1 ?
+            <Tab List={List} pieVData={pieVData} /> :
+            checked === 2 ?
+                'TODAY DATA SOON' :
+                checked === 3 ?
+                    'LAST 7 DAYS DATA SOON' :
+                    '';
         console.log(TabView);
         setTabState(TabView);
     }
@@ -54,7 +63,7 @@ const Home = (props: Props) => {
     useEffect(() => {
         if (!loading) {
             setList([...List, {
-                label: 'TOTAL VACCINATED',
+                label: 'TOTAL VACCINATIONS',
                 count: dashBoardStore.vaccination.total
             },
             {
@@ -68,18 +77,18 @@ const Home = (props: Props) => {
 
             ])
 
-            setpopVData([...popVData,
+            setpieVData([...pieVData,
             {
-                label: 'COVISHIELD',
-                count: dashBoardStore.vaccination.covishield
+                name: 'COVISHIELD',
+                value: dashBoardStore.vaccination.covishield
             },
             {
-                label: 'COVAXINE',
-                count: dashBoardStore.vaccination.covaxin
+                name: 'COVAXINE',
+                value: dashBoardStore.vaccination.covaxin
             },
             {
-                label: 'SPUTNIK',
-                count: dashBoardStore.vaccination.sputnik
+                name: 'SPUTNIK',
+                value: dashBoardStore.vaccination.sputnik
             },
             ])
 
@@ -106,19 +115,16 @@ const Home = (props: Props) => {
     return (
         <div style={{ textAlign: 'center', marginTop: '14px' }}>
             <ButtonGroup color="secondary" fullWidth variant="outlined" aria-label="outlined button group">
-                <Button color={checked === 1? 'success':'secondary'} onClick={() => handleChange(1)}>TOTAL</Button>
-                <Button color={checked === 2? 'success':'secondary'}  onClick={() => handleChange(2)}>TODAY</Button>
-                <Button color={checked === 3? 'success':'secondary'}  onClick={() => handleChange(3)}>LAST 7 DAYS</Button>
+                <Button color={checked === 1 ? 'success' : 'secondary'} onClick={() => handleChange(1)}>TOTAL</Button>
+                <Button color={checked === 2 ? 'success' : 'secondary'} onClick={() => handleChange(2)}>TODAY</Button>
+                <Button color={checked === 3 ? 'success' : 'secondary'} onClick={() => handleChange(3)}>LAST 7 DAYS</Button>
             </ButtonGroup>
-            <Box>
+            <Box mt={5}>
                 {
                     tabState !== "" && tabState !== undefined ? tabState : ''
                 }
-
-
             </Box>
-
-
+            
         </div>
     )
 }
