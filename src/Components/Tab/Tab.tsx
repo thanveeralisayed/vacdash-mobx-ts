@@ -3,11 +3,13 @@ import React from 'react'
 import Vaccination from '../Vaccination/Vaccination'
 import { labelct } from "../Home/Home"
 import { PieChar, pieDataItem } from '../PieChart/PieChar'
+import { Barchar, barChartItem } from '../Barchart/Barchar'
 
 interface Props {
     List: labelct[];
     pieVData?: pieDataItem[];
     pieGdata?: pieDataItem[];
+    barSdata?: barChartItem[];
 }
 
 export const Tab = (props: Props) => {
@@ -31,6 +33,10 @@ export const Tab = (props: Props) => {
                     <PieChar piData={props.pieGdata} />
                 </Grid>
             </Grid>
+            <Grid mt={1} container>
+               <Barchar barData={props.barSdata} />
+            </Grid>
+
         </div>
     )
 }

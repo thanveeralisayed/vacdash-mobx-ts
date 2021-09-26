@@ -10,6 +10,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { Button, ButtonGroup, Grid, Paper, Tabs } from '@mui/material';
 import { Tab } from '../Tab/Tab';
 import { PieChar, pieDataItem } from '../PieChart/PieChar';
+import { barChartItem } from '../Barchart/Barchar';
+
 
 
 
@@ -37,6 +39,7 @@ const Home = (props: Props) => {
     const [checked, setChecked] = React.useState(0);
     const [pieVData, setpieVData] = useState<pieDataItem[]>([] as pieDataItem[]);
     const [pieGdata, setPieGdata] = useState<pieDataItem[]>([] as pieDataItem[]);
+    const [BarSData, setBarSData] = useState<barChartItem[]>([] as barChartItem[]);
 
     const handleChange = (val: number) => {
         setChecked(val);
@@ -45,7 +48,7 @@ const Home = (props: Props) => {
     const SetTabs = () => {
         console.log(checked);
         const TabView = checked === 1 ?
-            <Tab List={List} pieVData={pieVData} pieGdata={pieGdata} /> :
+            <Tab List={List} pieVData={pieVData} pieGdata={pieGdata} barSdata={BarSData} /> :
             checked === 2 ?
                 'TODAY DATA SOON' :
                 checked === 3 ?
@@ -108,6 +111,19 @@ const Home = (props: Props) => {
             }
 
             ])
+
+            const bData = dashBoardStore.states.map((state:state):barChartItem=>{
+               const obj:barChartItem = {
+                   name:state.state_name,
+                   Dose2:state.totally_vaccinated,
+                   Dose1:state.partial_vaccinated,
+                   amt:state.partial_vaccinated,
+               }
+               return obj;
+            })
+
+            setBarSData(bData);
+
 
             setChecked(1);
 
