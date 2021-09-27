@@ -55,7 +55,7 @@ export interface state {
 }
 
 
-class DashBoardStore {
+export class DashBoardStore {
 
 
   @observable topBlock: result;

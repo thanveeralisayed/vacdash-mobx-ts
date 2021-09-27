@@ -15,6 +15,22 @@ interface Props {
 
 export const Tab = (props: Props) => {
     const { List } = props;
+
+    const total = <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
+                            <PieChar piData={props.pieVData} />
+                    </Grid>
+
+    const gender = <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
+                            <PieChar piData={props.pieGdata} />
+                    </Grid>
+
+    
+    const hospitals = <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
+                                <PieChar piData={props.PieHdata} />
+                            </Grid>
+
+    const states = <Barchar barData={props.barSdata} />                        
+
     return (
         <div>
             <Grid mt={2} container>
@@ -27,18 +43,13 @@ export const Tab = (props: Props) => {
                 }
             </Grid>
             <Grid mt={1} container>
-                <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
-                    <PieChar piData={props.pieVData} />
-                </Grid>
-                <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
-                    <PieChar piData={props.pieGdata} />
-                </Grid>
-                <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
-                    <PieChar piData={props.PieHdata} />
-                </Grid>
+                {props.pieVData? total:''}
+                {props.pieGdata? gender:''}
+                {props.PieHdata? hospitals:''}
+
             </Grid>
             <Box width="100%" >
-                <Barchar barData={props.barSdata} />
+                {props.barSdata? states:''}
             </Box>
 
         </div>

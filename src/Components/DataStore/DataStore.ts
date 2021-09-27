@@ -1,13 +1,13 @@
 import { barChartItem } from "../Barchart/Barchar";
 import { labelct } from "../Home/Home";
 import { pieDataItem } from "../PieChart/PieChar";
-import { state } from "../Store/DashBoardStore";
+import { DashBoardStore, state } from "../Store/DashBoardStore";
 
 
 
 
 
-const TotalData = (dashBoardStore:any) => {
+const TotalData = (dashBoardStore:DashBoardStore) => {
     const vacdata:labelct[] = [{
         label: 'TOTAL VACCINATIONS',
         count: dashBoardStore.vaccination.total
@@ -88,7 +88,62 @@ const TotalData = (dashBoardStore:any) => {
 }
 
 
+const todayVac = (dashBoardStore:DashBoardStore) => {
+    const vacdata:labelct[] = [{
+        label: 'TOTAL VACCINATIONS',
+        count: dashBoardStore.vaccination.today
+    },
+    {
+        label: 'DOSE 1',
+        count: dashBoardStore.vaccination.today_dose_one
+    },
+    {
+        label: 'DOSE 2',
+        count: dashBoardStore.vaccination.today_dose_two
+    },
+
+    ]
+
+    const Gdist : pieDataItem[] = [
+        {
+            name: 'MALE',
+            value: dashBoardStore.vaccination.today_male
+        },
+        {
+            name: 'FEMALE',
+            value: dashBoardStore.vaccination.today_female
+        },
+        {
+            name: 'OTHERS',
+            value: dashBoardStore.vaccination.today_others
+        }
+
+        ]
+        
+  
+    
+    // const statesBar : barChartItem[] = dashBoardStore.states.map((state:state):barChartItem=>{
+    //     const obj:barChartItem = {
+    //         name:state.state_name,
+    //         Dose2:state.totally_vaccinated,
+    //         Dose1:state.partial_vaccinated,
+    //         amt:state.partial_vaccinated,
+    //     }
+    //     return obj;
+    //  })
+
+
+     const totalVac = {
+        vacdata,
+        Gdist
+     }
+
+     return totalVac;
+}
 
 
 
-export {TotalData}
+
+
+
+export {TotalData,todayVac}
