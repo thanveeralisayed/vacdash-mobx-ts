@@ -10,6 +10,7 @@ interface Props {
     pieVData?: pieDataItem[];
     pieGdata?: pieDataItem[];
     barSdata?: barChartItem[];
+    PieHdata?: pieDataItem[];
 }
 
 export const Tab = (props: Props) => {
@@ -31,6 +32,9 @@ export const Tab = (props: Props) => {
                 </Grid>
                 <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
                     <PieChar piData={props.pieGdata} />
+                </Grid>
+                <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
+                    <PieChar piData={props.PieHdata} />
                 </Grid>
             </Grid>
             <Box width="100%" >
