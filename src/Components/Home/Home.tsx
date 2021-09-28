@@ -4,9 +4,7 @@ import Box from '@mui/material/Box';
 import { Button, ButtonGroup} from '@mui/material';
 import { Tab } from '../Tab/Tab';
 import { todayVac, TotalData } from '../DataStore/DataStore';
-
-
-
+import { tabs } from "../Store/DashBoardStore"
 
 
 
@@ -40,9 +38,13 @@ const Home = (props: Props) => {
         const todayData = todayVac(dashBoardStore);
         
         const TabView = checked === 1 ?
-            <Tab List={totalData.vacdata} pieVData={totalData.vaccineDist} pieGdata={totalData.Gdist} barSdata={totalData.statesBar} PieHdata={totalData.HosData} /> :
+            <>
+            {dashBoardStore.tabManager = tabs.totalTab}
+            <Tab List={totalData.vacdata}  pieVData={totalData.vaccineDist} pieGdata={totalData.Gdist} barSdata={totalData.statesBar} PieHdata={totalData.HosData} /></> :
             checked === 2 ?
-            <Tab List={todayData.vacdata} pieGdata={todayData.Gdist} /> :
+            <>
+            {dashBoardStore.tabManager = tabs.todayTab}
+            <Tab List={todayData.vacdata}  pieGdata={todayData.Gdist} /> </>:
                 checked === 3 ?
                     'LAST 7 DAYS DATA SOON' :
                     '';

@@ -1,9 +1,10 @@
 import { Grid, Box } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import Vaccination from '../Vaccination/Vaccination'
 import { labelct } from "../Home/Home"
 import { PieChar, pieDataItem } from '../PieChart/PieChar'
 import { Barchar, barChartItem } from '../Barchart/Barchar'
+import DashBoardStore from "../Store/DashBoardStore"
 
 interface Props {
     List: labelct[];
@@ -16,6 +17,7 @@ interface Props {
 export const Tab = (props: Props) => {
     const { List } = props;
 
+    const dashBoardStore = useContext(DashBoardStore);
     const total = <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
                             <PieChar piData={props.pieVData} />
                     </Grid>
@@ -29,7 +31,7 @@ export const Tab = (props: Props) => {
                                 <PieChar piData={props.PieHdata} />
                             </Grid>
 
-    const states = <Barchar barData={props.barSdata} />                        
+    const states = <Barchar barData={props.barSdata}  />                        
 
     return (
         <div>
