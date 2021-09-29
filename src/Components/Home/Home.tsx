@@ -81,7 +81,7 @@ const Home = (props: Props) => {
                 <Button color={checked === 2 ? 'success' : 'secondary'} onClick={() => handleChange(2)}>TODAY</Button>
                 <Button color={checked === 3 ? 'success' : 'secondary'} onClick={() => handleChange(3)}>LAST 7 DAYS</Button>
             </ButtonGroup>
-            <Box mt={5}>
+            <Box mt={5} ml={3}>
                 {
                     tabState !== "" && tabState !== undefined ? tabState : ''
                 }

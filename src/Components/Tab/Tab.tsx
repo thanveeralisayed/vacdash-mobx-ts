@@ -18,7 +18,7 @@ export const Tab = (props: Props) => {
     const { List } = props;
 
     const dashBoardStore = useContext(DashBoardStore);
-    const total = <Grid item md={4} xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
+    const total = <Grid item md={4}  xs={12} sm={12} style={{ cursor: 'pointer', textAlign: 'center' }}>
                             <PieChar piData={props.pieVData} />
                     </Grid>
 
@@ -34,7 +34,7 @@ export const Tab = (props: Props) => {
     const states = <Barchar barData={props.barSdata}  />                        
 
     return (
-        <div>
+        <>
             <Grid mt={2} container>
                 {
                     List.length > 0 ? List.map((item: labelct,index:number) =>
@@ -54,6 +54,6 @@ export const Tab = (props: Props) => {
                 {props.barSdata? states:''}
             </Box>
 
-        </div>
+        </>
     )
 }
