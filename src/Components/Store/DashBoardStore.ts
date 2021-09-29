@@ -54,11 +54,7 @@ export interface state {
   "today": number
 }
 
-export const tabs = {
-  totalTab:1,
-  todayTab:2,
-  lastSevenTab:3
-}
+
 
 
 export class DashBoardStore {
@@ -69,7 +65,6 @@ export class DashBoardStore {
   @observable sessions: sessions = {} as sessions;
   @observable vaccination: vaccination = {} as vaccination;
   @observable states: state[] = [{} as state];
-  @observable tabManager:number = tabs.totalTab;
   
 
   @action getData = async (callBack:React.Dispatch<React.SetStateAction<boolean>>) => {

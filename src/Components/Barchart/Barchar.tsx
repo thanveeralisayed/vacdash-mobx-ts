@@ -18,12 +18,11 @@ export interface barChartItem {
     Dose2?: number;
     Dose1?: number;
     amt?: number;
-    today?:number;
+    today?: number;
 }
 
 interface Props {
-    barData?: barChartItem[];
-    today?:boolean;
+    barData: barChartItem[];
 }
 
 
@@ -47,8 +46,18 @@ export const Barchar = (props: Props) => {
                 <Tooltip />
                 <Legend />
                 <ReferenceLine x={0} stroke="#000" />
-                <Bar dataKey="Dose1" fill="#8884d8" stackId="stack" />
-                <Bar dataKey="Dose2" fill="#82ca9d" stackId="stack" />
+                {
+                    props?.barData[0]?.today ? <>
+                        <Bar dataKey="today" fill="#8884d8" stackId="stack" />
+                    </> : ''
+                }
+                {
+                    props.barData[0].Dose1 ? <>
+                        <Bar dataKey="Dose1" fill="#8884d8" stackId="stack" />
+                        <Bar dataKey="Dose2" fill="#82ca9d" stackId="stack" />
+                    </> : ''
+                }
+
             </BarChart>
         </ResponsiveContainer>
     )

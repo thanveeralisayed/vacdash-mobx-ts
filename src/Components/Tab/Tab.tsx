@@ -10,7 +10,7 @@ interface Props {
     List: labelct[];
     pieVData?: pieDataItem[];
     pieGdata?: pieDataItem[];
-    barSdata?: barChartItem[];
+    barSdata: barChartItem[];
     PieHdata?: pieDataItem[];
 }
 

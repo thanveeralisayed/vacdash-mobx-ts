@@ -132,7 +132,8 @@ const todayVac = (dashBoardStore: DashBoardStore) => {
 
     const totalVac = {
         vacdata,
-        Gdist
+        Gdist,
+        statesBar
     }
 
     return totalVac;
